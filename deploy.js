@@ -13,7 +13,7 @@ const deploy = async () => {
   console.log("Attemping to deploy from account " + accounts[0])
 
   const deployedContract = await new web3.eth.Contract(abi)
-    .deploy({data: evm.bytecode.object, arguments: ["Hello"]})
+    .deploy({data: evm.bytecode.object})
     .send({ from: accounts[0], gas: '1000000'});
 
   console.log("Contract deployed to " + deployedContract.options.address);

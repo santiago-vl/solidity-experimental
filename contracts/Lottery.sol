@@ -2,13 +2,12 @@
 
 pragma solidity ^0.8.9;
 
-import "hardhat/console.sol";
-
 contract Lottery {
   address public manager;
   address[] public players;
 
   constructor() {
+    // Sender es quien despliega el contrato ".send({ from: accounts[0], gas: '1000000'})";
     manager = msg.sender;
   }
 
@@ -21,13 +20,13 @@ contract Lottery {
     players.push(msg.sender);
   }
 
-  function pickWinner() public onlyForManagers {
+  function pickWinner() public onlyForManagers returns (address) {
     require(players.length > 0, "No players yet");
     uint index = random() % players.length;
     address payable winner = payable(players[index]);
-    console.log("The winner is %s", winner);
     winner.transfer(address(this).balance);
     players = new address[](0);
+    return winner;
   }
 
   function getCurrentReward() public view returns (uint) {
