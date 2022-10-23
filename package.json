@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "frontend-test": "npm run test --prefix frontend",
+    "eject": "npm run eject --prefix frontend",
+    "deploy": "node deploy.js",
     "test": "mocha"
   },
   "author": "",
